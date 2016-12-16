@@ -8,12 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-
 import com.squareup.picasso.Picasso;
-
 import java.net.MalformedURLException;
 import java.util.List;
-
 import tsiro.example.com.popularmoviesapps1.helpers.GridViewItemClickCallback;
 import tsiro.example.com.popularmoviesapps1.MainActivity;
 import tsiro.example.com.popularmoviesapps1.POJO.Movie;
@@ -74,7 +71,9 @@ public class MoviesArrayAdapter extends ArrayAdapter<Movie> {
     }
 
     @Override
-    public int getViewTypeCount() { return getCount(); }
+    public int getViewTypeCount() {
+        return movieList.size() > 0 ? getCount() : 1;
+    }
 
     @Override
     public int getItemViewType(int position) { return position; }

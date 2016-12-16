@@ -45,7 +45,7 @@ public class MoviesAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
 
     @Override
     public List<Movie> loadInBackground() {
-        Log.e(DEBUG_TAG, "LOAD IN BACKGROUND: "+ action);
+//        Log.e(DEBUG_TAG, "LOAD IN BACKGROUND: "+ action);
         List<Movie> movieList = null;
         try {
             String response = NetworkUtilities.fetchDataFromMovieDatabaseAPi(NetworkUtilities.buildUrl(getContext().getString(R.string.movies_api_base_endpoint, action)));
@@ -58,7 +58,7 @@ public class MoviesAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
 
     @Override
     protected void onStopLoading() {
-        Log.e(DEBUG_TAG, "onStopLoading");
+//        Log.e(DEBUG_TAG, "onStopLoading");
         cancelLoad();
     }
 
@@ -70,6 +70,6 @@ public class MoviesAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
         } else {
             mainActivityCallbacks.onError(AppConfig.ERROR_OCCURRED);
         }
-        Log.e(DEBUG_TAG, "deliverResult");
+//        Log.e(DEBUG_TAG, "deliverResult");
     }
 }

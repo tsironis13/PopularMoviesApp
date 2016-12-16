@@ -11,6 +11,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import tsiro.example.com.popularmoviesapps1.R;
+
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
@@ -43,7 +46,7 @@ public class NetworkUtilities {
                 byteArrayOutputStream.write(buffer, 0, buffer.length);
             }
             Log.e(DEBUG_TAG, byteArrayOutputStream.toString());
-            return byteArrayOutputStream.toString("utf-8");
+            return byteArrayOutputStream.toString();
         } finally {
             httpURLConnection.disconnect();
         }

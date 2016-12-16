@@ -5,6 +5,14 @@
     <!-- SORT TYPE BASED ON ACTIONS -->
     <string name="popular">popular</string>
     <string name="top_rated">top_rated</string>
+
+    <string name="sort_order">sort_order</string>
+    <string name="action">action</string>
+    <string name="title">title</string>
+    <string name="movie">movie</string>
+    <string name="movie_list">movie_list</string>
+
+    <!--<string name="utf_8">utf-8</string>-->
     <!-- real API KEY removed
         go tp 'https://www.themoviedb.org/' for more details about obtaining a new key
      -->
@@ -16,4 +24,5 @@
 
     <string name="movie_poster">movie_poster</string>
     <string name="movie_rating">%s/10</string>
+
 </resources>

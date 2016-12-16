@@ -21,9 +21,6 @@ import tsiro.example.com.popularmoviesapps1.utilities.NetworkUtilities;
 
 public class MovieDetails extends AppCompatActivity {
 
-    private TextView title_textview, release_date_textview, user_rating_textview, overview_textview;
-    private ImageView movie_poster_imageview;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,14 +29,14 @@ public class MovieDetails extends AppCompatActivity {
         if (getSupportActionBar() != null)
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        title_textview          = (TextView) findViewById(R.id.title_textview);
-        release_date_textview   = (TextView) findViewById(R.id.release_date_textview);
-        user_rating_textview    = (TextView) findViewById(R.id.user_rating_textview);
-        overview_textview       = (TextView) findViewById(R.id.overview_textview);
-        movie_poster_imageview  = (ImageView) findViewById(R.id.movie_poster_imageview);
+        TextView title_textview = (TextView) findViewById(R.id.title_textview);
+        TextView release_date_textview = (TextView) findViewById(R.id.release_date_textview);
+        TextView user_rating_textview = (TextView) findViewById(R.id.user_rating_textview);
+        TextView overview_textview = (TextView) findViewById(R.id.overview_textview);
+        ImageView movie_poster_imageview = (ImageView) findViewById(R.id.movie_poster_imageview);
 
-        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("movie")) {
-            Movie movie = getIntent().getExtras().getParcelable("movie");
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(getString(R.string.movie))) {
+            Movie movie = getIntent().getExtras().getParcelable(getString(R.string.movie));
             if (movie != null) {
                 if (movie.getPosterPath() != null && !movie.getPosterPath().isEmpty()) {
                     try {

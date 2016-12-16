@@ -53,15 +53,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             initLoaderUnderConditions(action);
             title = getString(R.string.app_name);
         } else {
-            if (savedInstanceState.containsKey("action") && getSupportActionBar() != null) action = savedInstanceState.getString("action");
-            if (savedInstanceState.containsKey("title") && getSupportActionBar() != null) {
-                title = savedInstanceState.getString("title");
+            if (savedInstanceState.containsKey(getString(R.string.action)) && getSupportActionBar() != null) action = savedInstanceState.getString(getString(R.string.action));
+            if (savedInstanceState.containsKey(getString(R.string.title)) && getSupportActionBar() != null) {
+                title = savedInstanceState.getString(getString(R.string.title));
                 getSupportActionBar().setTitle(title);
             }
-            if (savedInstanceState.containsKey("movie_list")) {
-                movieList = savedInstanceState.getParcelableArrayList("movie_list");
+            if (savedInstanceState.containsKey(getString(R.string.movie_list))) {
+                movieList = savedInstanceState.getParcelableArrayList(getString(R.string.movie_list));
                 if (movieList != null && movieList.size() == 0) {
-                    initLoaderUnderConditions(savedInstanceState.getString("action"));
+                    initLoaderUnderConditions(savedInstanceState.getString(getString(R.string.action)));
                 }
                 moviesGridView.setAdapter(new MoviesArrayAdapter(this, 0 , movieList));
             }
@@ -78,15 +78,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("movie_list", (ArrayList<? extends Parcelable>) movieList);
-        outState.putString("action", action);
-        outState.putString("title", title);
+        outState.putParcelableArrayList(getString(R.string.movie_list), (ArrayList<? extends Parcelable>) movieList);
+        outState.putString(getString(R.string.action), action);
+        outState.putString(getString(R.string.title), title);
     }
 
     @Override
     public Loader<List<Movie>> onCreateLoader(int id, Bundle args) {
         String action= "";
-        if (args != null && args.containsKey("sort_order")) action = args.getString("sort_order");
+        if (args != null && args.containsKey(getString(R.string.sort_order))) action = args.getString(getString(R.string.sort_order));
         progressBar.setVisibility(View.VISIBLE);
         return new MoviesAsyncTaskLoader(this, action);
     }
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoaderReset(Loader<List<Movie>> loader) { Log.e(DEBUG_TAG, "onLoaderReset"); }
+    public void onLoaderReset(Loader<List<Movie>> loader) {}
 
     // callback to handle async loader error and
     // update UI accordingly
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (movieList != null) {
             Movie movie = movieList.get(position);
             Intent intent = new Intent(this, MovieDetails.class);
-            intent.putExtra("movie", movie);
+            intent.putExtra(getString(R.string.movie), movie);
             startActivity(intent);
         }
     }
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else {
             if (errorContainerLlt.getVisibility() == View.VISIBLE) errorContainerLlt.setVisibility(View.GONE);
             Bundle bundle = new Bundle();
-            bundle.putString("sort_order", action);
+            bundle.putString(getString(R.string.sort_order), action);
             getSupportLoaderManager().restartLoader(AppConfig.LOADER_ID, bundle, this);
         }
     }
