@@ -21,13 +21,14 @@ public class JsonParsing {
     private static final String TAG_VOTE_AVG        = "vote_average";
     private static final String TAG_RELEASE_DATE    = "release_date";
 
+    private static JSONArray results;
     private static int id;
     private static String title, poster_path, overview, rating, release_date;
 
     public static List<Movie> parseJSONResponse(String response) throws JSONException{
         JSONObject jsonObject = new JSONObject(response);
 
-        JSONArray results = jsonObject.getJSONArray(TAG_RESULTS);
+        if (jsonObject.has(TAG_RESULTS)) results = jsonObject.getJSONArray(TAG_RESULTS);
 
         List<Movie> movieList = new ArrayList<>();
         if (results.length() > 0) {
