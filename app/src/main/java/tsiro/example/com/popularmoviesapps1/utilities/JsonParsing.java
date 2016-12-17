@@ -21,6 +21,9 @@ public class JsonParsing {
     private static final String TAG_VOTE_AVG        = "vote_average";
     private static final String TAG_RELEASE_DATE    = "release_date";
 
+    private static int id;
+    private static String title, poster_path, overview, rating, release_date;
+
     public static List<Movie> parseJSONResponse(String response) throws JSONException{
         JSONObject jsonObject = new JSONObject(response);
 
@@ -29,14 +32,16 @@ public class JsonParsing {
         List<Movie> movieList = new ArrayList<>();
         if (results.length() > 0) {
             for (int i = 0; i < results.length(); i++) {
-                int id                  = results.getJSONObject(i).getInt(TAG_ID);
-                String original_title   = results.getJSONObject(i).getString(TAG_TITLE);
-                String poster_path      = results.getJSONObject(i).getString(TAG_POSTER_PATH);
-                String overview         = results.getJSONObject(i).getString(TAG_OVERVIEW);
-                String rating           = results.getJSONObject(i).getString(TAG_VOTE_AVG);
-                String release_date     = results.getJSONObject(i).getString(TAG_RELEASE_DATE);
+                JSONObject object = results.getJSONObject(i);
 
-                movieList.add(new Movie(id, original_title, poster_path, overview, rating, release_date));
+                if (object.has(TAG_ID)) id = results.getJSONObject(i).getInt(TAG_ID);
+                if (object.has(TAG_TITLE)) title  = results.getJSONObject(i).getString(TAG_TITLE);
+                if (object.has(TAG_POSTER_PATH)) poster_path = results.getJSONObject(i).getString(TAG_POSTER_PATH);
+                if (object.has(TAG_OVERVIEW)) overview = results.getJSONObject(i).getString(TAG_OVERVIEW);
+                if (object.has(TAG_VOTE_AVG)) rating = results.getJSONObject(i).getString(TAG_VOTE_AVG);
+                if (object.has(TAG_RELEASE_DATE)) release_date = results.getJSONObject(i).getString(TAG_RELEASE_DATE);
+
+                movieList.add(new Movie(id, title, poster_path, overview, rating, release_date));
             }
         }
         return movieList;

@@ -16,7 +16,7 @@
     <!-- real API KEY removed
         go tp 'https://www.themoviedb.org/' for more details about obtaining a new key
      -->
-    <string name="movies_api_base_endpoint">https://api.themoviedb.org/3/movie/%s?api_key=testkey</string>
+    <string name="movies_api_base_endpoint">https://api.themoviedb.org/3/movie/%s?api_key=9f054b7337c0f719f2c17715fd3304a7</string>
     <string name="movies_api_poster_base_endapoint">http://image.tmdb.org/t/p/w185%s</string>
     <string name="no_connection">No connection available. Please try again.</string>
     <string name="error_occured">An error occurred. Please try again.</string>
